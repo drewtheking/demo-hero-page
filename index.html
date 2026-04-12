@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WMedlaw - Legal Defense for Healthcare Professionals</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(0, 0, 0, 0.85);
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            color: white;
+            font-weight: bold;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #8ba3d4;
+        }
+
+        .contact-btn {
+            background: #8ba3d4;
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .contact-btn:hover {
+            background: #7a92c2;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('hero.png');
+            background-size: cover;
+            background-position: center 15px;
+            color: white;
+            padding: 150px 4rem 100px;
+            text-align: left;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            margin-top: 75px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            line-height: 1.2;
+            max-width: 600px;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: #8ba3d4;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary:hover {
+            background: #7a92c2;
+            transform: translateY(-2px);
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, #FFD700 0%, #FFC700 100%);
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+        }
+
+        .btn-gold:hover {
+            background: linear-gradient(135deg, #FFC700 0%, #FFB700 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.6);
+        }
+
+        /* Call to Action Bar */
+        .cta-bar {
+            background: #2d3436;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            align-items: center;
+            text-align: center;
+        }
+
+        .cta-bar .btn-gold {
+            margin-bottom: 1rem;
+        }
+
+        .cta-items-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .cta-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .cta-icon {
+            font-size: 2rem;
+            color: #8ba3d4;
+        }
+
+        .cta-text h3 {
+            color: white;
+            margin-bottom: 0.25rem;
+        }
+
+        .cta-text p {
+            color: #bbb;
+            font-size: 0.9rem;
+        }
+
+        /* Legal Services Section */
+        .legal-services {
+            padding: 5rem 2rem;
+            background: white;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-label {
+            color: #8ba3d4;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.8rem;
+            color: #2d3436;
+            margin-bottom: 1rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: white;
+            border: 2px solid #f0f0f0;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .service-card:hover {
+            border-color: #8ba3d4;
+            box-shadow: 0 5px 20px rgba(139, 163, 212, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #2d3436;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #2d3436;
+        }
+
+        .service-card p {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .learn-more-btn {
+            background: #8ba3d4;
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 25px;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .learn-more-btn:hover {
+            background: #7a92c2;
+        }
+
+        /* Timeline Section */
+        .timeline-section {
+            padding: 5rem 2rem;
+            background: #3d3f42;
+            color: white;
+        }
+
+        .timeline-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .timeline-title {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #8ba3d4;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 4rem 0 2rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 4rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 25px;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: 2px;
+            background: #666;
+            z-index: 0;
+        }
+
+        .timeline-item {
+            flex: 1;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .timeline-item:nth-child(odd) {
+            text-align: center;
+            padding: 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            text-align: center;
+            padding: 0;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 24px;
+            height: 24px;
+            background: white;
+            border: 4px solid #8ba3d4;
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        .timeline-label {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #8ba3d4;
+            margin-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        .timeline-text {
+            font-size: 0.9rem;
+            color: #ccc;
+            margin: 0.5rem 0;
+            line-height: 1.4;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 5rem 2rem;
+            background: #e8eef7;
+            text-align: center;
+        }
+
+        .testimonials-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .testimonials-header h2 {
+            font-size: 2.5rem;
+            color: #2d3436;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-carousel {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial-text {
+            font-size: 1.3rem;
+            font-style: italic;
+            color: #666;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .testimonial-author {
+            font-size: 0.95rem;
+            color: #999;
+            margin-bottom: 1rem;
+        }
+
+        .stars {
+            color: #ffc107;
+            font-size: 1.2rem;
+            letter-spacing: 0.25rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Blog Section */
+        .blog-section {
+            padding: 5rem 2rem;
+            background: white;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-end;
+            padding: 1rem;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .blog-content {
+            padding: 2rem;
+        }
+
+        .blog-date {
+            color: #8ba3d4;
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #2d3436;
+        }
+
+        .blog-card p {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .read-more {
+            color: #8ba3d4;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .read-more:hover {
+            color: #7a92c2;
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 5rem 2rem;
+            background: #f9f9f9;
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .about-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: #2d3436;
+        }
+
+        .about-content h3 {
+            font-size: 1.3rem;
+            color: #8ba3d4;
+            margin-top: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .about-content p {
+            color: #666;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            margin: 2rem 0;
+        }
+
+        .footer-links a {
+            color: #8ba3d4;
+            text-decoration: none;
+            margin: 0 1rem;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .social-links {
+            margin: 2rem 0;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: #8ba3d4;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .social-links a:hover {
+            background: #7a92c2;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: #999;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                flex-wrap: wrap;
+            }
+
+            .nav-links {
+                width: 100%;
+                gap: 1rem;
+                margin-top: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-item {
+                text-align: left !important;
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+            }
+
+            .timeline-dot {
+                left: 0;
+                transform: translateX(0);
+            }
+
+            .timeline-label {
+                margin-left: 30px;
+            }
+
+            .timeline-text {
+                margin-left: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-logo">
+            <span style="font-size: 1.8rem;">⚖️</span>
+            <span>WMEDLAW</span>
+        </div>
+        <div class="nav-links">
+            <a href="#about">About Us</a>
+            <a href="#services">Legal Services</a>
+            <a href="#who-serve">Who We Serve</a>
+            <a href="#payments">Payments</a>
+            <a href="#resources">Resources</a>
+            <a href="#contact" class="contact-btn">Contact Us</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Protect Your Career,<br>Defend Your Quality of Care</h1>
+        <p>Whether you're navigating hospital investigations, clinical adverse privileging actions, licensing concerns, or other regulatory investigations, our expertise is here to safeguard your career, your reputation, and your peace of mind.</p>
+        <div class="hero-buttons">
+            <button class="btn btn-gold">
+                <span style="font-size: 1.5rem;">☎️</span> Call Walter Mosher 24/7
+            </button>
+            <button class="btn btn-secondary">
+                Learn More
+            </button>
+        </div>
+    </section>
+
+    <!-- Quick CTA Bar -->
+    <section class="cta-bar">
+        <button class="btn btn-gold" style="font-size: 1.1rem; padding: 1.2rem 2.5rem;">
+            <span style="font-size: 2rem;">☎️</span> Call Walter Mosher 24/7
+        </button>
+        <div class="cta-items-grid">
+            <div class="cta-item">
+                <div class="cta-icon">📅</div>
+                <div class="cta-text">
+                    <h3>Schedule a Free 30min Assessment</h3>
+                </div>
+            </div>
+            <div class="cta-item">
+                <div class="cta-icon">📱</div>
+                <div class="cta-text">
+                    <h3>Contact wmedlaw Today!</h3>
+                </div>
+            </div>
+            <div class="cta-item">
+                <div class="cta-icon">💬</div>
+                <div class="cta-text">
+                    <h3>Start a Chat with wmedmaw</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Legal Services Section -->
+    <section class="legal-services" id="services">
+        <div class="section-header">
+            <p class="section-label">Legal Services</p>
+            <h2>We Represent Healthcare Professionals Facing</h2>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">📋</div>
+                <h3>Military Physician Defense</h3>
+                <button class="learn-more-btn">Learn More</button>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">👨‍⚕️</div>
+                <h3>Physician Licensure Defense</h3>
+                <button class="learn-more-btn">Learn More</button>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🏥</div>
+                <h3>Healthcare Operations Law</h3>
+                <button class="learn-more-btn">Learn More</button>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">⚖️</div>
+                <h3>Patient Rights: Malpractice & Disability</h3>
+                <button class="learn-more-btn">Learn More</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="timeline-section">
+        <div class="timeline-container">
+            <p class="timeline-title">Case Review Timeline</p>
+            <h2>What Stage Are You In?</h2>
+
+            <h3 style="margin-top: 3rem; margin-bottom: 2rem; font-size: 1.5rem;">Hospital Peer Review</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-label">1</div>
+                    <div class="timeline-text">Summary<br>Suspension</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-label">2</div>
+                    <div class="timeline-text">QA<br>Investigation</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-label">3</div>
+                    <div class="timeline-text">Privileging<br>Authority<br>Decision</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-label">4</div>
+                    <div class="timeline-text">Peer Review<br>Hearing</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-label">5</div>
+                    <div class="timeline-text">NPDB + State<br>License<br>Reports</div>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 4rem; margin-bottom: 2rem; font-size: 1.5rem;">State Medical Board Review</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-label">6</div>
+                    <div class="timeline-text">MTF Notice:<br>Patient<br>Complaint</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-label">7</div>
+                    <div class="timeline-text">Formal<br>Investigation</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-label">8</div>
+                    <div class="timeline-text">Informal<br>Settlement<br>Conference</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-label">9</div>
+                    <div class="timeline-text">SOAH<br>Hearing</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-label">10</div>
+                    <div class="timeline-text">Appeals</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="testimonials-header">
+            <p class="section-label">Testimonials</p>
+            <h2>What Our Clients Say</h2>
+        </div>
+        <div class="testimonial-carousel">
+            <div class="stars">★★★★★</div>
+            <p class="testimonial-text">"I've worked with Walt for years. He is just an amazing lawyer!"</p>
+            <p class="testimonial-author">— Dr. Steven White, Former Litigation Manager, Texas Medical Board</p>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="blog-section">
+        <div class="section-header">
+            <p class="section-label">Blog</p>
+            <h2>Recent Articles</h2>
+        </div>
+        <div class="blog-grid">
+            <div class="blog-card">
+                <div class="blog-image">23</div>
+                <div class="blog-content">
+                    <p class="blog-date">JAN 23, 2024</p>
+                    <h3>Lorem Ipsum Dolor Sit Amet Consectetur</h3>
+                    <p>Sed ut error tempore sed ut erat eligent sis vel blandit tortor faucibus sit.</p>
+                    <a href="#" class="read-more">Read More →</a>
+                </div>
+            </div>
+            <div class="blog-card">
+                <div class="blog-image">23</div>
+                <div class="blog-content">
+                    <p class="blog-date">JAN 23, 2024</p>
+                    <h3>Lorem Ipsum Dolor Sit Amet Consectetur</h3>
+                    <p>Sed ut error tempore sed ut erat eligent sis vel blandit tortor faucibus sit.</p>
+                    <a href="#" class="read-more">Read More →</a>
+                </div>
+            </div>
+            <div class="blog-card">
+                <div class="blog-image">23</div>
+                <div class="blog-content">
+                    <p class="blog-date">JAN 23, 2024</p>
+                    <h3>Lorem Ipsum Dolor Sit Amet Consectetur</h3>
+                    <p>Sed ut error tempore sed ut erat eligent sis vel blandit tortor faucibus sit.</p>
+                    <a href="#" class="read-more">Read More →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="about-container">
+            <div class="about-image">
+                <img src="walt.png" alt="Walter Mosher, JD MHA LLM">
+            </div>
+            <div class="about-content">
+                <h2>Why Doctors Trust Walt Mosher, JD MHA LLM</h2>
+                <h3>Foundation of Affection</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisi leo, vel blandit tortor faucibus.</p>
+                
+                <h3>Experience</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisi leo, vel blandit tortor faucibus.</p>
+                
+                <h3>Principle</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisi leo, vel blandit tortor faucibus.</p>
+                
+                <h3>Values</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisi leo, vel blandit tortor faucibus.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="nav-logo" style="justify-content: center; margin-bottom: 2rem;">
+                <span style="font-size: 1.8rem;">⚖️</span>
+                <span>WMEDLAW</span>
+            </div>
+            <div class="footer-links">
+                <a href="#about">About Us</a>
+                <a href="#services">Legal Services</a>
+                <a href="#payments">Payments</a>
+                <a href="#contact">Contact Us</a>
+                <a href="#privacy">Privacy Policy</a>
+            </div>
+            <div class="social-links">
+                <a href="#" title="LinkedIn">in</a>
+                <a href="#" title="YouTube">▶</a>
+                <a href="#" title="Facebook">f</a>
+                <a href="#" title="Instagram">📷</a>
+                <a href="#" title="Twitter">𝕏</a>
+            </div>
+            <div class="footer-bottom">
+                <p>Copyright © 2024 - Law Office of Walt Mosher Ph.D MBA, J.D., wmedlaw</p>
+                <p>Phone: 808-792-2008 | Email: contact@wmedlaw.com</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
